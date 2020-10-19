@@ -17,4 +17,5 @@ make clean
 make -j4
 cp src/.libs/libmagic-1.dll ../dist/
 cp src/.libs/file.exe ../dist/
+cp src/magic.h ../dist/
 cp COPYING ../dist/COPYING.file
