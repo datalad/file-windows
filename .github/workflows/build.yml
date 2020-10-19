@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Install build requirements
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y gcc-mingw-w64-i686 gcc-mingw-w64-x86-64 binutils-mingw-w64
+
+      - name: Build
+        run: ./build.sh
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: file-windows-dist
+          path: dist
